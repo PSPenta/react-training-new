@@ -35,7 +35,11 @@ function App() {
       <button onClick={addTask}>Add</button><br /><br />
       <input type={"text"} placeholder={"search task"} name={"search"} id={"search"} value={filter} onChange={searchTask} />
       <ul>
-        {tasks.filter(task => task.includes(filter)).map((task, i, j) => <li key={i}>{task}&nbsp;&nbsp;<button onClick={() => deleteTask(i)}>Delete</button></li>)}
+        {
+          tasks
+            .filter(task => task.includes(filter))
+            .map((task, i, j) => <li key={i}>{task}&nbsp;&nbsp;<button onClick={() => deleteTask(i)}>Delete</button></li>)
+        }
       </ul>
     </div>
   );
