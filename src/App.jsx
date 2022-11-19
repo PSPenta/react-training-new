@@ -26,19 +26,24 @@ function App() {
     setFilter('');
   };
 
+  let deleteAll = () => {
+    setTasks([]);
+  };
+
   return (
     <div className="App">
-      <header>
-        <h1>To Do List</h1>
+      <header id='header'>
+        <h2>My To Do List</h2>
+        <input type={"text"} name={"task"} id={"task"} onFocus={clearFilter} />
+        <button className={"btn"} onClick={addTask}>Add</button><br /><br />
       </header>
-      <input type={"text"} name={"task"} id={"task"} onFocus={clearFilter} />
-      <button onClick={addTask}>Add</button><br /><br />
+      <button className={"btn"} onClick={deleteAll}>Delete All Tasks</button><br /><br />
       <input type={"text"} placeholder={"search task"} name={"search"} id={"search"} value={filter} onChange={searchTask} />
       <ul>
         {
           tasks
             .filter(task => task.includes(filter))
-            .map((task, i, j) => <li key={i}>{task}&nbsp;&nbsp;<button onClick={() => deleteTask(i)}>Delete</button></li>)
+            .map((task, i, j) => <li key={i}>{task}&nbsp;&nbsp;<button className={"btn btn-delete"} onClick={() => deleteTask(i)}>Delete</button></li>)
         }
       </ul>
     </div>
