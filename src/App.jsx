@@ -6,7 +6,8 @@ function App() {
   let [tasks, setTasks] = useState([]);
   let [filter, setFilter] = useState('');
 
-  let addTask = () => {
+  let addTask = (e) => {
+    e.preventDefault();
     let task = document.getElementById('task').value;
     setTasks([...tasks, task]);
   };
@@ -17,8 +18,8 @@ function App() {
     setTasks(newTasks);
   };
 
-  let searchTask = () => {
-    let filter = document.getElementById('search').value;
+  let searchTask = (e) => {
+    let filter = e.target.value;
     setFilter(filter);
   };
 
@@ -34,16 +35,18 @@ function App() {
     <div className="App">
       <header id='header'>
         <h2>My To Do List</h2>
-        <input type={"text"} name={"task"} id={"task"} onFocus={clearFilter} />
-        <button className={"btn"} onClick={addTask}>Add</button><br /><br />
       </header>
-      <button className={"btn"} onClick={deleteAll}>Delete All Tasks</button><br /><br />
+      <form onSubmit={addTask}>
+        <input type={"text"} name={"task"} id={"task"} onFocus={clearFilter} />
+        <button className={"btn"}>Add</button>
+      </form>
+      <button className={"btn"} onClick={deleteAll}>Clear List</button><br />
       <input type={"text"} placeholder={"search task"} name={"search"} id={"search"} value={filter} onChange={searchTask} />
       <ul>
         {
           tasks
             .filter(task => task.includes(filter))
-            .map((task, i, j) => <li key={i}>{task}&nbsp;&nbsp;<button className={"btn btn-delete"} onClick={() => deleteTask(i)}>Delete</button></li>)
+            .map((task, i, j) => <li key={i}>{task}<span className={"close"} onClick={() => deleteTask(i)}>{"\u00D7"}</span></li>)
         }
       </ul>
     </div>
