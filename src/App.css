@@ -76,6 +76,10 @@ ul li.checked::before {
   color: white;
 }
 
+.btn-delete {
+  background-color: #f44336;
+}
+
 .close {
   position: absolute;
   right: 0;

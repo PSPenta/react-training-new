@@ -40,7 +40,7 @@ function App() {
         <input type={"text"} name={"task"} id={"task"} onFocus={clearFilter} />
         <button className={"btn"}>Add</button>
       </form>
-      <button className={"btn"} onClick={deleteAll}>Clear List</button><br />
+      <button className={"btn btn-delete"} onClick={deleteAll}>Clear List</button><br />
       <input type={"text"} placeholder={"search task"} name={"search"} id={"search"} value={filter} onChange={searchTask} />
       <ul>
         {
