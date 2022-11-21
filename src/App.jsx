@@ -8,8 +8,12 @@ function App() {
 
   let addTask = (e) => {
     e.preventDefault();
-    let task = document.getElementById('task').value;
-    setTasks([...tasks, task]);
+    let task = e.target[0].value;
+    if (task && task !== '') {
+      setTasks([...tasks, task]);
+    } else {
+      alert('Invalid task');
+    }
   };
 
   let deleteTask = (i) => {
@@ -28,7 +32,11 @@ function App() {
   };
 
   let deleteAll = () => {
-    setTasks([]);
+    if (tasks.length <= 0) {
+      alert('Task list is empty!');
+    } else {
+      setTasks([]);
+    }
   };
 
   return (
